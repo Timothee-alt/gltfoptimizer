@@ -28,10 +28,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/gltf-optimizer.git"
+    "url": "git+https://github.com/Timothee-alt/gltfoptimizer.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/gltf-optimizer/issues"
+    "url": "https://github.com/Timothee-alt/gltfoptimizer/issues"
   },
-  "homepage": "https://github.com/yourusername/gltf-optimizer#readme"
+  "homepage": "https://github.com/Timothee-alt/gltfoptimizer#readme"
 }
