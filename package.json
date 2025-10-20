@@ -1,0 +1,35 @@
+{
+  "name": "@gltf-optimizer/optimize-models",
+  "version": "1.0.0",
+  "description": "A Node.js library to optimize GLTF/GLB 3D models using gltf-transform, with texture resizing and WebP compression.",
+  "main": "index.js",
+  "bin": {
+    "gltf-optimizer": "./cli.js"
+  },
+  "scripts": {
+    "start": "node cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "gltf-transform": "^2.2.0"
+  },
+  "keywords": [
+    "gltf",
+    "glb",
+    "3d",
+    "optimization",
+    "draco",
+    "webp",
+    "model"
+  ],
+  "author": "Utilisateur",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/gltf-optimizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/gltf-optimizer/issues"
+  },
+  "homepage": "https://github.com/yourusername/gltf-optimizer#readme"
+}

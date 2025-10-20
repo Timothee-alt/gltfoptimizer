@@ -1,0 +1,24 @@
+{
+  "modelsDir": "./models",
+  "outputDir": null,
+  "options": {
+    "compressDraco": true,
+    "resizeTextures": true,
+    "maxTextureSize": 1024,
+    "backupOriginal": true
+  },
+  "excludePatterns": [
+    "**/node_modules/**",
+    "**/*.backup.*",
+    "**/*-original.*"
+  ],
+  "includePatterns": [
+    "**/*.gltf",
+    "**/*.glb"
+  ],
+  "parallelProcessing": false,
+  "maxConcurrency": 4,
+  "logLevel": "info",
+  "generateReport": false,
+  "reportFormat": "json"
+}
