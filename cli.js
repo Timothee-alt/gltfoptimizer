@@ -14,21 +14,21 @@ const MODELS_DIR = modelsDirArg ? path.resolve(modelsDirArg) : path.join(__dirna
 const OUTPUT_DIR = outputDirArg ? path.resolve(outputDirArg) : null;
 
 function showHelp() {
-  log('\n📖 Utilisation:', 'bright');
+  log('\n📖 Usage:', 'bright');
   log('  gltf-optimizer [options]', 'yellow');
   log('\n🚀 Options:', 'bright');
-  log('  --yes, -y                Mode non-interactif (automatisation)', 'blue');
-  log('  --models-dir=<path>      Dossier contenant les modèles', 'blue');
-  log('  --output-dir=<path>      Dossier de sortie (optionnel)', 'blue');
-  log('  --help, -h              Afficher cette aide', 'blue');
-  log('\n💡 Exemples:', 'bright');
+  log('  --yes, -y                Non-interactive mode (automation)', 'blue');
+  log('  --models-dir=<path>      Directory containing the models', 'blue');
+  log('  --output-dir=<path>      Output directory (optional)', 'blue');
+  log('  --help, -h              Show this help', 'blue');
+  log('\n💡 Examples:', 'bright');
   log('  gltf-optimizer --yes', 'yellow');
   log('  gltf-optimizer --models-dir=./assets --yes', 'yellow');
   log('  gltf-optimizer --yes --output-dir=./optimized', 'yellow');
-  log('\n✨ Démarrage en mode interactif si aucune option...', 'green');
+  log('\n✨ Starting in interactive mode if no options...', 'green');
 }
 
-// Vérifier si l'utilisateur demande de l'aide
+// Check if user requests help
 if (args.includes('--help') || args.includes('-h')) {
   showHelp();
   process.exit(0);
@@ -41,15 +41,15 @@ async function selectModels(gltfFiles) {
   });
 
   return new Promise((resolve) => {
-    log('\n📋 Modèles disponibles:\n', 'bright');
+    log('\n📋 Available models:\n', 'bright');
     gltfFiles.forEach((file, index) => {
       log(`${index + 1}. ${path.relative(process.cwd(), file)}`, 'yellow');
     });
 
-    log('\n💡 Entrez les numéros des modèles à optimiser séparés par des virgules', 'blue');
-    log('(ex: 1,3,5 ou simplement 1)\n', 'blue');
+    log('\n💡 Enter the model numbers to optimize separated by commas', 'blue');
+    log('(e.g.: 1,3,5 or just 1)\n', 'blue');
 
-    rl.question('Numéros: ', (answer) => {
+    rl.question('Numbers: ', (answer) => {
       rl.close();
       
       const selected = [];
@@ -68,9 +68,9 @@ async function selectModels(gltfFiles) {
 }
 
 async function showMenu(gltfFiles) {
-  // Mode non-interactif : optimiser tous les modèles directement
+  // Non-interactive mode: optimize all models directly
   if (nonInteractive) {
-    log('\n🚀 Mode non-interactif activé : optimisation de tous les modèles', 'green');
+    log('\n🚀 Non-interactive mode activated: optimizing all models', 'green');
     return gltfFiles;
   }
 
@@ -81,15 +81,15 @@ async function showMenu(gltfFiles) {
 
   return new Promise((resolve) => {
     log('\n' + '='.repeat(60), 'bright');
-    log('🎯 Sélection du mode d\'optimisation', 'bright');
+    log('🎯 Optimization mode selection', 'bright');
     log('='.repeat(60), 'bright');
-    log('\n1. Optimiser TOUS les modèles', 'blue');
-    log('2. Sélectionner des modèles spécifiques', 'blue');
-    log('3. Annuler', 'blue');
-    log('\n💡 Utilisez --yes pour le mode non-interactif', 'yellow');
+    log('\n1. Optimize ALL models', 'blue');
+    log('2. Select specific models', 'blue');
+    log('3. Cancel', 'blue');
+    log('\n💡 Use --yes for non-interactive mode', 'yellow');
     log('\n' + '='.repeat(60) + '\n', 'bright');
 
-    rl.question('Choisissez une option (1, 2 ou 3): ', async (answer) => {
+    rl.question('Choose an option (1, 2 or 3): ', async (answer) => {
       rl.close();
 
       switch (answer.trim()) {
@@ -104,7 +104,7 @@ async function showMenu(gltfFiles) {
           resolve(null);
           break;
         default:
-          log('❌ Option invalide', 'red');
+          log('❌ Invalid option', 'red');
           const retry = await showMenu(gltfFiles);
           resolve(retry);
       }
@@ -113,26 +113,26 @@ async function showMenu(gltfFiles) {
 }
 
 async function main() {
-  log('🚀 Début de l\'optimisation des modèles 3D', 'bright');
+  log('🚀 Starting 3D model optimization', 'bright');
   log('='.repeat(60), 'blue');
 
   const gltfFiles = findGltfFiles(MODELS_DIR);
 
   if (gltfFiles.length === 0) {
-    log('⚠️  Aucun fichier GLTF/GLB trouvé dans ' + MODELS_DIR + '!', 'yellow');
+    log('⚠️  No GLTF/GLB files found in ' + MODELS_DIR + '!', 'yellow');
     process.exit(0);
   }
 
-  log(`\n📊 ${gltfFiles.length} fichier(s) trouvé(s)\n`, 'blue');
+  log(`\n📊 ${gltfFiles.length} file(s) found\n`, 'blue');
 
   const selectedFiles = await showMenu(gltfFiles);
 
   if (selectedFiles === null || selectedFiles.length === 0) {
-    log('\n❌ Optimisation annulée ou aucun modèle sélectionné', 'red');
+    log('\n❌ Optimization cancelled or no models selected', 'red');
     process.exit(0);
   }
 
-  log(`\n✅ ${selectedFiles.length} modèle(s) sélectionné(s) pour optimisation\n`, 'green');
+  log(`\n✅ ${selectedFiles.length} model(s) selected for optimization\n`, 'green');
 
   selectedFiles.forEach((file, index) => {
     log(`[${index + 1}/${selectedFiles.length}] ${path.relative(process.cwd(), file)}`, 'bright');
@@ -145,7 +145,7 @@ async function main() {
 
   // Mode non-interactif : pas de confirmation
   if (nonInteractive) {
-    log('\n🚀 Démarrage de l\'optimisation en mode automatique...', 'green');
+    log('\n🚀 Starting automatic optimization...', 'green');
 
     selectedFiles.forEach((file, index) => {
       const { getGltfModelSize } = require('./lib/optimize');
@@ -168,29 +168,29 @@ async function main() {
         successCount++;
 
       } catch (error) {
-        log(`❌ Échec de l'optimisation: ${path.basename(file)} - ${error.message}`, 'red');
+        log(`❌ Optimization failed: ${path.basename(file)} - ${error.message}`, 'red');
         errorCount++;
       }
     });
 
     // Résumé statistique global
     log('\n' + '='.repeat(60), 'green');
-    log('📊 RAPPORT D\'OPTIMISATION GLOBAL', 'bright');
+    log('📊 GLOBAL OPTIMIZATION REPORT', 'bright');
     log('='.repeat(60), 'green');
 
-    log(`\n📈 Statistiques:`, 'blue');
-    log(`   ✅ Modèles optimisés avec succès: ${successCount}`, 'green');
-    log(`   ❌ Échecs d'optimisation: ${errorCount}`, errorCount > 0 ? 'red' : 'green');
-    log(`   📦 Taille totale originale: ${totalOriginalSize.toFixed(2)} MB`, 'yellow');
-    log(`   📦 Taille totale optimisée: ${totalOptimizedSize.toFixed(2)} MB`, 'green');
+    log(`\n📈 Statistics:`, 'blue');
+    log(`   ✅ Successfully optimized models: ${successCount}`, 'green');
+    log(`   ❌ Optimization failures: ${errorCount}`, errorCount > 0 ? 'red' : 'green');
+    log(`   📦 Total original size: ${totalOriginalSize.toFixed(2)} MB`, 'yellow');
+    log(`   📦 Total optimized size: ${totalOptimizedSize.toFixed(2)} MB`, 'green');
 
     if (successCount > 0) {
       const totalReduction = ((1 - totalOptimizedSize / totalOriginalSize) * 100).toFixed(1);
       const totalSavings = (totalOriginalSize - totalOptimizedSize).toFixed(2);
-      log(`   💾 Réduction totale: ${totalReduction}% (${totalSavings} MB économisés)`, 'green');
+      log(`   💾 Total reduction: ${totalReduction}% (${totalSavings} MB saved)`, 'green');
     }
 
-    log('\n🎉 Optimisation de tous les modèles terminée!', 'green');
+    log('\n🎉 All models optimization completed!', 'green');
     log('='.repeat(60), 'green');
     return;
   }
@@ -200,11 +200,11 @@ async function main() {
     output: process.stdout
   });
 
-  rl.question('\n⚠️  Continuer avec l\'optimisation? (o/n): ', (answer) => {
+  rl.question('\n⚠️  Continue with optimization? (y/n): ', (answer) => {
     rl.close();
 
-    if (answer.toLowerCase() !== 'o' && answer.toLowerCase() !== 'oui') {
-      log('\n❌ Optimisation annulée', 'red');
+    if (answer.toLowerCase() !== 'y' && answer.toLowerCase() !== 'yes') {
+      log('\n❌ Optimization cancelled', 'red');
       process.exit(0);
     }
 
@@ -234,29 +234,29 @@ async function main() {
         successCount++;
 
       } catch (error) {
-        log(`❌ Échec de l'optimisation: ${path.basename(file)} - ${error.message}`, 'red');
+        log(`❌ Optimization failed: ${path.basename(file)} - ${error.message}`, 'red');
         errorCount++;
       }
     });
 
     // Résumé statistique global
     log('\n' + '='.repeat(60), 'green');
-    log('📊 RAPPORT D\'OPTIMISATION GLOBAL', 'bright');
+    log('📊 GLOBAL OPTIMIZATION REPORT', 'bright');
     log('='.repeat(60), 'green');
 
-    log(`\n📈 Statistiques:`, 'blue');
-    log(`   ✅ Modèles optimisés avec succès: ${successCount}`, 'green');
-    log(`   ❌ Échecs d'optimisation: ${errorCount}`, errorCount > 0 ? 'red' : 'green');
-    log(`   📦 Taille totale originale: ${totalOriginalSize.toFixed(2)} MB`, 'yellow');
-    log(`   📦 Taille totale optimisée: ${totalOptimizedSize.toFixed(2)} MB`, 'green');
+    log(`\n📈 Statistics:`, 'blue');
+    log(`   ✅ Successfully optimized models: ${successCount}`, 'green');
+    log(`   ❌ Optimization failures: ${errorCount}`, errorCount > 0 ? 'red' : 'green');
+    log(`   📦 Total original size: ${totalOriginalSize.toFixed(2)} MB`, 'yellow');
+    log(`   📦 Total optimized size: ${totalOptimizedSize.toFixed(2)} MB`, 'green');
 
     if (successCount > 0) {
       const totalReduction = ((1 - totalOptimizedSize / totalOriginalSize) * 100).toFixed(1);
       const totalSavings = (totalOriginalSize - totalOptimizedSize).toFixed(2);
-      log(`   💾 Réduction totale: ${totalReduction}% (${totalSavings} MB économisés)`, 'green');
+      log(`   💾 Total reduction: ${totalReduction}% (${totalSavings} MB saved)`, 'green');
     }
 
-    log('\n🎉 Optimisation de tous les modèles terminée!', 'green');
+    log('\n🎉 All models optimization completed!', 'green');
     log('='.repeat(60), 'green');
   });
 }

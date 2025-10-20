@@ -1,7 +1,7 @@
 {
-  "name": "@gltf-optimizer/optimize-models",
+  "name": "gltf-optimizer",
   "version": "1.0.0",
-  "description": "A Node.js library to optimize GLTF/GLB 3D models using gltf-transform, with texture resizing and WebP compression.",
+  "description": "A powerful Node.js library and CLI tool to optimize 3D models in GLTF/GLB format using gltf-transform. Compresses meshes (Draco), resizes textures, and converts to WebP for optimal web performance.",
   "main": "index.js",
   "bin": {
     "gltf-optimizer": "./cli.js"
