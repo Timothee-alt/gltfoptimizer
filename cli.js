@@ -10,7 +10,7 @@ const nonInteractive = args.includes('--yes') || args.includes('-y');
 const modelsDirArg = args.find(arg => arg.startsWith('--models-dir='))?.split('=')[1];
 const outputDirArg = args.find(arg => arg.startsWith('--output-dir='))?.split('=')[1];
 
-const MODELS_DIR = modelsDirArg ? path.resolve(modelsDirArg) : path.join(__dirname, 'models');
+const MODELS_DIR = modelsDirArg ? path.resolve(modelsDirArg) : path.join(process.cwd(), 'models');
 const OUTPUT_DIR = outputDirArg ? path.resolve(outputDirArg) : null;
 
 function showHelp() {
