@@ -244,6 +244,6 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - [Khronos Group](https://www.khronos.org/) - GLTF/GLB specifications
 - All contributors and the open-source community
 
----
+--
 
 **Made with ❤️ for the 3D web community**
