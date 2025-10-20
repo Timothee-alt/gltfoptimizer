@@ -1,6 +1,6 @@
 {
   "name": "gltf-optimizer-breizhwebsolution",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A powerful Node.js library and CLI tool to optimize 3D models in GLTF/GLB format using gltf-transform. Compresses meshes (Draco), resizes textures, and converts to WebP for optimal web performance.",
   "main": "index.js",
   "bin": {

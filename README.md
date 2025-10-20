@@ -2,9 +2,9 @@
 
 A powerful Node.js library and CLI tool to optimize 3D models in GLTF/GLB format. Uses `gltf-transform` to compress meshes (Draco), resize textures, and convert them to WebP for optimal web performance.
 
-![npm version](https://img.shields.io/npm/v/@gltf-optimizer/optimize-models)
-![license](https://img.shields.io/npm/l/@gltf-optimizer/optimize-models)
-![node version](https://img.shields.io/node/v/@gltf-optimizer/optimize-models)
+![npm version](https://img.shields.io/npm/v/gltf-optimizer-breizhwebsolution)
+![license](https://img.shields.io/npm/l/gltf-optimizer-breizhwebsolution)  
+![node version](https://img.shields.io/node/v/gltf-optimizer-breizhwebsolution)
 
 ## 🚀 Features
 
@@ -34,7 +34,7 @@ npm i gltf-optimizer-breizhwebsolution
 Import and use functions directly in your Node.js code:
 
 ```javascript
-const { findGltfFiles, optimizeModel } = require('@gltf-optimizer/optimize-models');
+const { findGltfFiles, optimizeModel } = require('gltf-optimizer-breizhwebsolution');
 
 // Find all GLTF files in a directory
 const modelsDir = './path/to/your/models';
@@ -157,7 +157,7 @@ The tool provides detailed optimization reports:
 ### Custom Validation
 
 ```javascript
-const { validateGltfModel } = require('@gltf-optimizer/optimize-models');
+const { validateGltfModel } = require('gltf-optimizer-breizhwebsolution');
 
 const validation = validateGltfModel('model.gltf');
 if (!validation.valid) {
@@ -168,7 +168,7 @@ if (!validation.valid) {
 ### Loading Configuration
 
 ```javascript
-const { loadConfig } = require('@gltf-optimizer/optimize-models');
+const { loadConfig } = require('gltf-optimizer-breizhwebsolution');
 
 const config = loadConfig('./custom-config.json');
 console.log('Loaded configuration:', config);
@@ -177,7 +177,7 @@ console.log('Loaded configuration:', config);
 ### Custom Optimization Pipeline
 
 ```javascript
-const { optimizeModel } = require('@gltf-optimizer/optimize-models');
+const { optimizeModel } = require('gltf-optimizer-breizhwebsolution');
 
 await optimizeModel('input.gltf', {
   compressDraco: true,
