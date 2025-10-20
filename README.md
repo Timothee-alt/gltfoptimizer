@@ -24,7 +24,7 @@ A powerful Node.js library and CLI tool to optimize 3D models in GLTF/GLB format
 ## 📦 Installation
 
 ```bash
-npm install @gltf-optimizer/optimize-models
+npm i gltf-optimizer-breizhwebsolution
 ```
 
 ## 🛠️ Usage
